@@ -36,9 +36,7 @@ def load_model():
         repetition_penalty=1.15
     )
 
-    local_llm = HuggingFacePipeline(pipeline=pipe)
-
-    return local_llm
+    return HuggingFacePipeline(pipeline=pipe)
 
 
 # @click.command()
