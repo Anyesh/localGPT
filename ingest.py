@@ -27,8 +27,10 @@ def load_documents(source_dir: str) -> List[Document]:
     docs = []
     for file_path in all_files:
         if file_path[-4:] == 'xlsx':
-            for doc in xlxs_to_csv(f"{source_dir}/{file_path}"):
-                docs.append(load_single_document(doc))
+            docs.extend(
+                load_single_document(doc)
+                for doc in xlxs_to_csv(f"{source_dir}/{file_path}")
+            )
         elif file_path[-4:] in ['.txt', '.pdf', '.csv']:
             docs.append(load_single_document(f"{source_dir}/{file_path}"))
     return docs
